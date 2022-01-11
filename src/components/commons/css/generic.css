@@ -1,0 +1,16 @@
+.is-poli{
+    background-color: #6c1d45;
+    color: aliceblue !important;
+}
+.is-poli a{
+    color: aliceblue !important;
+    transition: all ease 1.5s;
+}
+.is-poli a:hover{
+    color: rgb(249, 242, 250) !important;
+    text-shadow: 3px 3px rgba(0, 0, 0, 0.6);
+}
+
+img.inverse{
+    filter: invert(1);
+}
