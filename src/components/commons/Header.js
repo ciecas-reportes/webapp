@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./css/generic.css";
 const Header = (props) => {
     const title = props.title;
     return (

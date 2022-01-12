@@ -8,7 +8,7 @@ const ToolbarResearcher = () => {
                 <button 
                     onClick={()=>{
                         setShowModal(true);
-                        setModalTitle("New Researcher");
+                        setModalTitle("Nuevo investigador");
                     }}
                     className="button is-info level-right">
                         <span className="icon level-item mr-4">

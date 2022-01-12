@@ -2,8 +2,9 @@ import React from 'react'
 import Layout from '../components/commons/Layout';
 import Modal from '../components/commons/Modal';
 import TableOrganizations from '../components/organizations/TableOrganizations';
-import ToolbarOrganization from '../components/organizations/ToolbarOrganization';
+//import ToolbarOrganization from '../components/organizations/ToolbarOrganization';
 import { ModalContextProvider } from '../contexts/modal/ModalContext';
+
 const Organizations = () => {
     return ( 
         
@@ -11,12 +12,12 @@ const Organizations = () => {
         <ModalContextProvider>
             <div className="panel">
                 <div className="panel-heading">
-                    Organizations
+                    Organizaciones
                 </div>
             </div>    
 
             <div className="box">
-                <ToolbarOrganization/>
+                {/*<ToolbarOrganization/>*/}
                 <TableOrganizations/>
             </div>
             <Modal/>

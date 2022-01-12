@@ -1,6 +1,7 @@
 // Static Resources
 import "bulma/css/bulma.css"; //BULMA
 import "@fortawesome/fontawesome-free/js/all"; // ICONS
+import "./components/commons/css/generic.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 // Components
@@ -16,7 +17,8 @@ function App() {
       <Router>
           <Routes>
             <Route path="/" element={<Home/>}> </Route>
-            <Route path="/organizations" element={<Organizations/>}> </Route>
+            <Route path="/organizations" element={<Organizations/>}> 
+            </Route>
             <Route path="/researchers" element={<Researchers/>}> </Route>
           </Routes>
       </Router>

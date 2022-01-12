@@ -2,41 +2,31 @@ import React, { useContext } from 'react';
 import { ModalContext } from '../../contexts/modal/ModalContext';
 
 
-const Modal = () => {
+const Modal = (props) => {
 
     const {showModal, modalTitle, setShowModal, setModalTitle} = useContext(ModalContext);
-
-    const closeModal = () => {
-        setShowModal(false);
-        setModalTitle("");
-    };
 
     return ( 
 
         <div className={`modal ${ showModal ? 'is-active' : '' }`}>
             <div className="modal-background"></div>
             <div className="modal-card">
-                <header className="modal-card-head">
-                    <p className="modal-card-title">
+                <header className="modal-card-head has-background-dark">
+                    <p className="modal-card-title has-text-weight-bold has-text-white-ter">
                         {modalTitle}
                     </p>
                     <button 
-                        onClick={() => closeModal()}
+                        onClick={() => {
+                            setShowModal(false);
+                            setModalTitle("");
+                        }}
                         className="delete" 
                         aria-label="close">    
                     </button>
                 </header>
                 <section className="modal-card-body">
-                    Contenido
+                    {props.children}
                 </section>
-                <footer className="modal-card-foot">
-                    <button className="button is-info">Save changes</button>
-                    <button 
-                        onClick={() => closeModal()}
-                        className="button">
-                            Cancel
-                    </button>
-                </footer>
             </div>
         </div>
 

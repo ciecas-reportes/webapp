@@ -5,12 +5,12 @@ const TableOrganizations = () => {
     const [organizationsList, setOrganizationsList] = useState(
         [
             {
-            "id": 0,
-            "name": "pepita"
+            "id": 1,
+            "name": "ciecas"
             },
             {
-                "id": 1,
-                "name": "palanqueta"
+            "id": 2,
+            "name": "escom"
             }
         ]
     );
@@ -21,7 +21,6 @@ const TableOrganizations = () => {
             <table className="table is-hoverable is-striped is-fullwidth">
                 <thead>
                     <tr>
-                        <th>ID</th>
                         <th>NAME</th>
                         <th>ACTIONS</th>
                     </tr>

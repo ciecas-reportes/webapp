@@ -8,7 +8,7 @@ const ToolbarOrganization = () => {
                 <button 
                     onClick={()=>{
                         setShowModal(true);
-                        setModalTitle("New Organization");
+                        setModalTitle("Nuevo Organización");
                     }}
                     className="button is-info level-right">
                         <span className="icon level-item mr-4">

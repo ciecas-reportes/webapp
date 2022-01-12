@@ -8,9 +8,14 @@ const Home = () => {
                 <div className="block mt-4">
                     <h4 className="title is-4">Buscar</h4>
                 </div>
-                <div className="field">
-                    <div className="control is-large">
-                        <input className="input is-large" type="text" placeholder="tema de interés"/>
+                <div className="field has-addons pr-3">
+                    <div className="control is-expanded">
+                        <input className="input" type="text" placeholder="Find a repository" />
+                    </div>
+                    <div className="control">
+                        <a className="button is-info">
+                        Search
+                        </a>
                     </div>
                 </div>
             </div>

@@ -4,13 +4,12 @@ const TableRowResearchers = ({researcher}) => {
 
     const {setShowModal, setModalTitle} = useContext(ModalContext);
     const openModalUpdateResearcher = () => {
-        setModalTitle("Updating researcher");
+        setModalTitle("Actualizar Investigador");
         setShowModal(true);
     };
 
     const openModalDeleteResearcher = () => {
-        setModalTitle("Deleting researcher");
-        setShowModal(true);
+        alert("borrado");
     };
 
     return (  

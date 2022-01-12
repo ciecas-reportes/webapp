@@ -4,20 +4,17 @@ const TableRowOrganizations = ({organization}) => {
 
     const {setShowModal, setModalTitle} = useContext(ModalContext);
     const openModalUpdateOrganization = () => {
-        setModalTitle("Updating");
+        setModalTitle("Actualizar Organización");
         setShowModal(true);
     };
 
     const openModalDeleteOrganization = () => {
-        setModalTitle("Deleting");
+        setModalTitle("Borrar Organización");
         setShowModal(true);
     };
 
     return (  
         <tr>
-            <td>
-                {organization.id}
-            </td>
             <td>
                 {organization.name}
             </td>

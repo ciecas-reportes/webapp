@@ -1,6 +1,7 @@
 import React from 'react'
 import Layout from '../components/commons/Layout';
 import Modal from '../components/commons/Modal';
+import FormResearcher from '../components/researchers/FormResearcher';
 import TableResearchers from '../components/researchers/TableReseachers';
 import ToolbarResearcher from '../components/researchers/ToolbarResearcher';
 import { ModalContextProvider } from '../contexts/modal/ModalContext';
@@ -19,7 +20,9 @@ const Researchers = () => {
                 <ToolbarResearcher/>
                 <TableResearchers/>
             </div>
-            <Modal/>
+            <Modal>
+                <FormResearcher/>
+            </Modal>
         </ModalContextProvider>
     </Layout> 
     
