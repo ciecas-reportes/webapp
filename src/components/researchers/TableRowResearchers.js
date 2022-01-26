@@ -15,10 +15,10 @@ const TableRowResearchers = ({researcher}) => {
     return (  
         <tr>
             <td>
-                {researcher.id}
+                {researcher.name} {researcher.surname}
             </td>
             <td>
-                {researcher.name}
+                {researcher.email}
             </td>
             <td>
                 <div className="buttons">

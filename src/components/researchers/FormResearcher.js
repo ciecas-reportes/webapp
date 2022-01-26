@@ -1,9 +1,12 @@
 import React, { useContext } from 'react';
-import { useForm } from 'react-hook-form';
+import { useForm  } from 'react-hook-form';
 import { ModalContext } from '../../contexts/modal/ModalContext';
+import { ResearcherContext } from '../../contexts/researchers/researcherContext';
 const FormResearcher = () => {
     
-    const {setShowModal, setModalTitle} = useContext(ModalContext);
+    const {setShowModal, setModalTitle } = useContext(ModalContext);
+
+    const {addResearcher} = useContext(ResearcherContext);
 
     const researcherDefault = {
         name: "", surname: "", email: "", idGoogleScholar: ""
@@ -11,30 +14,40 @@ const FormResearcher = () => {
     /*      
         registro de campos de form, función que se ocupa de el envio del form cuando todo es correcto,
         estados de error del formulario por si alguna validación no se cumple,
-
     */
-    const { register, handleSubmit, formState: { errors }} = useForm({
-        defaultValues: researcherDefault
+    const { register, handleSubmit, reset,  formState: { errors }, clearErrors } = useForm({
+        defaultValues: researcherDefault,
+        mode: "onChange"
     });
+
+
     const onSubmit = (data, e) => {
-        e.preventDefault();
-        
+        // validar
         if(data.idGoogleScholar === "") delete data.idGoogleScholar;
+
+        addResearcher(data);
         
-        console.log(data);
-
+        // cerrar modal
+        closeModal();
+        
     };
-    const onError = (errors, e) => {
-        //console.log(errors, e)
-    };
-
+    
+    
     const closeModal = () => {
         setShowModal(false);
         setModalTitle("");
+
+        reset(
+            { values: researcherDefault }, 
+            {}
+        );
+        clearErrors();
+
     };
 
+
     return (
-        <form onSubmit={handleSubmit( onSubmit, onError )}>
+        <form onSubmit={handleSubmit( onSubmit )}>
             <div className="field">
                 <label className="label">Nombre</label>
             </div>

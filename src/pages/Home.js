@@ -13,9 +13,9 @@ const Home = () => {
                         <input className="input" type="text" placeholder="Find a repository" />
                     </div>
                     <div className="control">
-                        <a className="button is-info">
+                        <button className="button is-info">
                         Search
-                        </a>
+                        </button>
                     </div>
                 </div>
             </div>

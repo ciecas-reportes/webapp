@@ -5,10 +5,12 @@ import FormResearcher from '../components/researchers/FormResearcher';
 import TableResearchers from '../components/researchers/TableReseachers';
 import ToolbarResearcher from '../components/researchers/ToolbarResearcher';
 import { ModalContextProvider } from '../contexts/modal/ModalContext';
+import { ResearcherContextProvider } from '../contexts/researchers/researcherContext';
 const Researchers = () => {
     return ( 
         
     <Layout>
+        <ResearcherContextProvider>
         <ModalContextProvider>
             <div className="panel">
                 <div className="panel-heading">
@@ -24,6 +26,7 @@ const Researchers = () => {
                 <FormResearcher/>
             </Modal>
         </ModalContextProvider>
+        </ResearcherContextProvider>
     </Layout> 
     
     );

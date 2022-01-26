@@ -14,7 +14,7 @@ const ToolbarResearcher = () => {
                         <span className="icon level-item mr-4">
                             <i className="fas fa-plus"></i>
                         </span>
-                    New
+                    Agregar
                 </button>
             </div>
      );
