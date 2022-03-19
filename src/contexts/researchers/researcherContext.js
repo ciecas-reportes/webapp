@@ -1,11 +1,14 @@
 import React, { createContext, useReducer } from 'react';
-import { GET_LIST, ADD } from '../../const/actionTypes';
+import { GET_LIST, CREATE, GET_SINGLE } from '../../const/actionTypes';
 import ResearcherReducer from '../../reducers/researcherReducer';
+const { v4: uuidv4 } = require('uuid');
+
 export const ResearcherContext = createContext();
 export const ResearcherContextProvider = props => {
     // Valor inicial de la lista (default)
     const initialState = {
-        researchersList: []
+        researchersList: [],
+        currentResearcher: null
     };
     // Evitamos hacer componentes enormes con logica complicada con ayuda de los reducers
     const [state, dispatch] = useReducer(ResearcherReducer, initialState);
@@ -29,24 +32,31 @@ export const ResearcherContextProvider = props => {
         });
     }
 
-    const addResearcher = (researcher) => {
+    const createResearcher = (researcher) => {
 
-        const characters ='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-        let result = '';
-        const charactersLength = characters.length;
-        for ( let i = 0; i < 10; i++ ) {
-            result += characters.charAt(Math.floor(Math.random() * charactersLength));
-        }
-        researcher.id=result
+        researcher.id=uuidv4();
         dispatch({
-            type: ADD,
+            type: CREATE,
+            payload: researcher
+        });
+    }
+
+    const getResearcher = (researcher) => {
+
+        researcher.id=uuidv4();
+        dispatch({
+            type: GET_SINGLE,
             payload: researcher
         });
     }
 
     return (
         <ResearcherContext.Provider value={{ 
-            researchersList: state.researchersList, getResearchersList, addResearcher
+            researchersList: state.researchersList, 
+            currentResearcher: state.currentResearcher,
+            getResearchersList, 
+            createResearcher,
+            getResearcher
             }}>
             {props.children}
         </ResearcherContext.Provider>

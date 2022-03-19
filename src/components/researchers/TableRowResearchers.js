@@ -1,9 +1,12 @@
 import React, { useContext } from 'react';
 import { ModalContext } from '../../contexts/modal/ModalContext';
+import { ResearcherContext } from '../../contexts/researchers/researcherContext';
 const TableRowResearchers = ({researcher}) => {
 
     const {setShowModal, setModalTitle} = useContext(ModalContext);
+    const {getResearcher} = useContext(ResearcherContext);
     const openModalUpdateResearcher = () => {
+        getResearcher(researcher);
         setModalTitle("Actualizar Investigador");
         setShowModal(true);
     };
@@ -15,7 +18,9 @@ const TableRowResearchers = ({researcher}) => {
     return (  
         <tr>
             <td>
-                {researcher.name} {researcher.surname}
+                <button>
+                    {researcher.name} {researcher.surname}
+                </button>
             </td>
             <td>
                 {researcher.email}

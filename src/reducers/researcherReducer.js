@@ -1,4 +1,4 @@
-import { GET_LIST, ADD } from "../const/actionTypes";
+import { GET_LIST, CREATE, GET_SINGLE } from "../const/actionTypes";
 
 const initResearcherReducerOptions = (state, action) => {
 
@@ -8,7 +8,9 @@ const initResearcherReducerOptions = (state, action) => {
     // GET ALL
     options[GET_LIST] =  {...state, researchersList: action.payload};
     // NEW 
-    options[ADD] =  {...state, researchersList:[...state.researchersList, action.payload]};
+    options[CREATE] =  {...state, researchersList:[...state.researchersList, action.payload]};
+    // GET SINGLE RESEARCHER
+    options[GET_SINGLE] =  {...state, currentResearcher: action.payload};
     
     return options;
 }

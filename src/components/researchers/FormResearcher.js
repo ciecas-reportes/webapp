@@ -1,21 +1,22 @@
 import React, { useContext } from 'react';
 import { useForm  } from 'react-hook-form';
+import { useEffect } from 'react/cjs/react.production.min';
 import { ModalContext } from '../../contexts/modal/ModalContext';
 import { ResearcherContext } from '../../contexts/researchers/researcherContext';
 const FormResearcher = () => {
     
     const {setShowModal, setModalTitle } = useContext(ModalContext);
 
-    const {addResearcher} = useContext(ResearcherContext);
+    const {createResearcher, currentResearcher} = useContext(ResearcherContext);
 
     const researcherDefault = {
-        name: "", surname: "", email: "", idGoogleScholar: ""
+        id: "", name: "", surname: "", email: "", idGoogleScholar: ""
     }
     /*      
         registro de campos de form, función que se ocupa de el envio del form cuando todo es correcto,
         estados de error del formulario por si alguna validación no se cumple,
     */
-    const { register, handleSubmit, reset,  formState: { errors }, clearErrors } = useForm({
+    const { register, handleSubmit, reset, setValue,  formState: { errors }, clearErrors } = useForm({
         defaultValues: researcherDefault,
         mode: "onChange"
     });
@@ -23,20 +24,36 @@ const FormResearcher = () => {
 
     const onSubmit = (data, e) => {
         // validar
+        if(data.id === "") delete data.id;
         if(data.idGoogleScholar === "") delete data.idGoogleScholar;
-
-        addResearcher(data);
-        
+        createResearcher(data);
         // cerrar modal
         closeModal();
         
     };
+
+    useEffect(() => {
+      
+        if (currentResearcher !== null) {
+            setValue([
+                
+                { id: currentResearcher.id },
+                { name: currentResearcher.name },
+                { surname: currentResearcher.surname }, 
+                { email: currentResearcher.email }, 
+                { idGoogleScholar: currentResearcher.idGoogleScholar }
+                
+            ]);
+        }else{
+            reset(researcherDefault);
+        }
+
+    }, [currentResearcher]);
     
     
     const closeModal = () => {
         setShowModal(false);
         setModalTitle("");
-
         reset(
             { values: researcherDefault }, 
             {}
@@ -48,6 +65,13 @@ const FormResearcher = () => {
 
     return (
         <form onSubmit={handleSubmit( onSubmit )}>
+            <input
+                            autoComplete="off"
+                            className="input"
+                            type="hidden"
+                            placeholder="Nombre"
+                            {...register("id", {})}
+                        />
             <div className="field">
                 <label className="label">Nombre</label>
             </div>

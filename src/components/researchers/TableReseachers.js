@@ -10,7 +10,7 @@ const TableResearchers = () => {
     // esta funcion se ejecutara cada que se haga un cambio en su array de dependencias
     
     useEffect(() => {
-        getResearchersList();
+        getResearchersList()
     }, []);
 
     // Si la lista esta vacia mostramos este contenido en lugar de desplegar la tabla
