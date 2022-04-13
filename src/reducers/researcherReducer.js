@@ -1,4 +1,4 @@
-import { GET_LIST, CREATE, GET_SINGLE } from "../const/actionTypes";
+import { GET_LIST, CREATE, GET_SINGLE, UPDATE, DELETE } from "../const/actionTypes";
 
 const initResearcherReducerOptions = (state, action) => {
 
@@ -8,10 +8,19 @@ const initResearcherReducerOptions = (state, action) => {
     // GET ALL
     options[GET_LIST] =  {...state, researchersList: action.payload};
     // NEW 
-    options[CREATE] =  {...state, researchersList:[...state.researchersList, action.payload]};
+    options[CREATE] =  {...state, researchersList:[ action.payload , ...state.researchersList ]};
     // GET SINGLE RESEARCHER
-    options[GET_SINGLE] =  {...state, currentResearcher: action.payload};
-    
+    options[GET_SINGLE] =  {...state, currentResearcher: action.payload !== "" ? action.payload : null };
+    // UPDATE 
+    options[UPDATE] =  {...state, researchersList:state.researchersList.map(
+        r => r.id === action.payload.id ? action.payload : r
+    )};
+    // DELETE
+    options[DELETE] =  {
+            ...state, 
+            researchersList: state.researchersList.filter( r => r.id !== action.payload )
+    };
+
     return options;
 }
 

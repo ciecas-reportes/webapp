@@ -1,8 +1,10 @@
 import React from 'react';
 
+
 // Components
 import Header from "./Header";
 import Menu from "./Menu";
+import Footer from './Footer';
 
 const Layout = (props) => {
     const body = props.children;
@@ -20,7 +22,7 @@ const Layout = (props) => {
             </div>
         </div>
         
-        
+        <Footer/>
     </div> 
     );
 }
