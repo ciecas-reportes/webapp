@@ -11,6 +11,7 @@ const TableResearchers = () => {
     
     useEffect(() => {
         getResearchersList()
+        // eslint-disable-next-line
     }, []);
 
     // Si la lista esta vacia mostramos este contenido en lugar de desplegar la tabla
@@ -25,6 +26,7 @@ const TableResearchers = () => {
                     <tr>
                         <th>NAME</th>
                         <th>EMAIL</th>
+                        
                         <th>ACTIONS</th>
                     </tr>
                 </thead>

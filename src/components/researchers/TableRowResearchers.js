@@ -1,26 +1,29 @@
 import React, { useContext } from 'react';
 import { ModalContext } from '../../contexts/modal/ModalContext';
 import { ResearcherContext } from '../../contexts/researchers/researcherContext';
+import { Link } from "react-router-dom";
 const TableRowResearchers = ({researcher}) => {
 
     const {setShowModal, setModalTitle} = useContext(ModalContext);
-    const {getResearcher} = useContext(ResearcherContext);
+    const {getResearcher, deleteResearcher} = useContext(ResearcherContext);
     const openModalUpdateResearcher = () => {
         getResearcher(researcher);
         setModalTitle("Actualizar Investigador");
         setShowModal(true);
     };
 
-    const openModalDeleteResearcher = () => {
-        alert("borrado");
-    };
+    /* 
+    //Date format you have 
+    let date = new Date(researcher.dateModified);
+    //Date converted to MM-DD-YYYY format 
+    let dateModified = `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}`;
+    */
+
 
     return (  
         <tr>
             <td>
-                <button>
-                    {researcher.name} {researcher.surname}
-                </button>
+                <Link to={`/researcher/${researcher.id}`}>{researcher.name} {researcher.surname}</Link>
             </td>
             <td>
                 {researcher.email}
@@ -36,7 +39,7 @@ const TableRowResearchers = ({researcher}) => {
                             </span>
                     </button>
                     <button 
-                        onClick={() => openModalDeleteResearcher()}    /*Function to display the delete form*/
+                        onClick={() => deleteResearcher(researcher)}    /*Function to display the delete form*/
                         className="button is-danger is-small" 
                         title='Delete'>
                             <span className="icon">
