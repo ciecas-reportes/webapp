@@ -16,7 +16,7 @@ const FormResearcher = () => {
         registro de campos de form, función que se ocupa de el envio del form cuando todo es correcto,
         estados de error del formulario por si alguna validación no se cumple,
     */
-    const { register, handleSubmit, reset, setValue,  formState: { errors }, clearErrors } = useForm({
+    const { register, handleSubmit, reset,  formState: { errors }, clearErrors } = useForm({
         defaultValues: researcherDefault,
         mode: "onChange"
     });
@@ -35,17 +35,15 @@ const FormResearcher = () => {
     useEffect(() => {
       
         if (currentResearcher !== null) {
-            setValue([
-                
-                { id: currentResearcher.id },
-                { name: currentResearcher.name },
-                { surname: currentResearcher.surname }, 
-                { email: currentResearcher.email }, 
-                { idGoogleScholar: currentResearcher.idGoogleScholar }
-                
-            ]);
+            reset(
+                { values: currentResearcher }, 
+                {}
+            );
         }else{
-            reset(researcherDefault);
+            reset(
+                { values: researcherDefault }, 
+                {}
+            );
         }
 
     }, [currentResearcher]);
