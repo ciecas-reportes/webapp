@@ -16,12 +16,8 @@ const FormResearcher = () => {
         registro de campos de form, función que se ocupa de el envio del form cuando todo es correcto,
         estados de error del formulario por si alguna validación no se cumple,
     */
-<<<<<<< HEAD
-    const { register, handleSubmit, reset,  formState: { errors }, clearErrors } = useForm({
-=======
     const { register, handleSubmit, 
             reset,  formState: { errors }, clearErrors } = useForm({
->>>>>>> 4d25128d49e828a9a056d9901c1e0bfa13fac381
         defaultValues: researcherDefault,
         mode: "onChange"
     });
@@ -45,23 +41,9 @@ const FormResearcher = () => {
     
     // Cuando se envie el formulario o se cierre el modal
     useEffect(() => {
-<<<<<<< HEAD
-      
-        if (currentResearcher !== null) {
-            reset(
-                { values: currentResearcher }, 
-                {}
-            );
-        }else{
-            reset(
-                { values: researcherDefault }, 
-                {}
-            );
-=======
         if(showModal===false) {
             reset(researcherDefault);
             getResearcher(null);
->>>>>>> 4d25128d49e828a9a056d9901c1e0bfa13fac381
         }
         // eslint-disable-next-line
       }, [showModal]);
