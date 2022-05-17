@@ -5,7 +5,7 @@ const Footer = () => {
         <footer className="footer">
             <div className="content has-text-centered">
                 <p>
-                <strong>Reportes Investigación</strong> by <a href="https://github.com/gybranperez">Ciecas</a>.
+                <strong>Reportes Investigación</strong> by <a href="https://www.ciecas.ipn.mx/" target="_blank" rel="noopener noreferrer">Ciecas</a>.
                 </p>
             </div>
         </footer>
