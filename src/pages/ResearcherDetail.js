@@ -14,7 +14,7 @@ const ResearcherDetail = () => {
 
 
     const breadcrumbItemsList = [
-        {name:"Inicio", to:"/", icon:"fa-home"}, {name:"Investigadores", to:"/researchers"}
+        {name:"Inicio", to:"/", icon:"fa-home"}, {name:"Investigadores", to:"/researchers", icon:"fa-users"}
     ];
 
     return ( 

@@ -2,7 +2,8 @@ import React, {useReducer, createContext, useState} from 'react';
 import Swal from 'sweetalert2';
 import { GET_SINGLE } from '../../const/actionTypes';
 import DetailedResearcherReducer from '../../reducers/detailedResearcherReducer';
-import Axios from "axios";
+import Axios from 'axios';
+import { getErrorMessage } from '../../utils/request/errorMessageProducer';
 export const DetailedResearcherContext = createContext();
 
 export const DetailedResearcherContextProvider = (props) => {
@@ -29,14 +30,13 @@ export const DetailedResearcherContextProvider = (props) => {
             let researcherFound = null;
             if(id !== null){
                 setLoading(true);
-                researcherFound = await Axios.get(`/researcherdetail/${id}`).then(({ data }) => {
-                    return data;
+                researcherFound = await Axios.get(`/researcherdetail/${id}`)
+                    .then(({ data }) => data)
+                    .catch((err) => { 
+                        Toast.fire({ icon: "error", text: getErrorMessage(err), titleText :"No ha sido posible obtener el investigador." });
+                        return null;
                     })
-                    .catch((err) => {
-                    let message = typeof err.response !== "undefined" ? err.response.data.message : err.message;
-                    Toast.fire({ icon: "error", text: message, titleText :"No ha sido posible obtener el investigador." });
-                    return null;
-                  }).finally(() => setLoading(false));
+                    .finally(() => setLoading(false));
             }
             //await Axios /researcherdetail/6240b87d8805eb0f4405784a
             dispatch({ type: GET_SINGLE, payload: researcherFound !== null ? researcherFound : "" });

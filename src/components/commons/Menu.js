@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const Menu = () => {
     return ( 
 
-        <nav className="panel">
+        <nav className="panel menu-sticky">
             <p className="panel-heading">
                 Menu
             </p>
@@ -22,7 +22,7 @@ const Menu = () => {
             <div className="panel-block">
                 <Link to="/researchers" className="button is-fullwidth">
                     <span className="icon">
-                    <i className="fas fa-address-book"></i>
+                    <i className="fas fa-users"></i>
                     </span>
                     <span>
                         Investigadores

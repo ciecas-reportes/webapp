@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import TableRowResearchers from './TableRowResearchers';
 import { ResearcherContext } from '../../contexts/researchers/researcherContext';
+import ProgressBarInfinite from "../commons/ProgressBarInfinite";
 const TableResearchers = () => {
 
     // Obtenemos la propiedad del contexto superior
@@ -12,9 +13,13 @@ const TableResearchers = () => {
         getResearchersList()
         // eslint-disable-next-line
     }, []);
-    if(loading) return <center><p> CARGANDO </p></center>
+    if(loading) {
+        return <ProgressBarInfinite loading={(loading)}/>
+    } else if(researchersList.length === 0 && loading === false) { 
+        return <center><p> No hay registros existentes. </p></center>
+    }
     // Si la lista esta vacia mostramos este contenido en lugar de desplegar la tabla
-    if(researchersList.length === 0 && loading === false) return <center><p> No hay registros existentes. </p></center>
+    
 
     // Elementos a renderizar
     return ( 

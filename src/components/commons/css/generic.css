@@ -14,3 +14,12 @@
 img.inverse{
     filter: invert(1);
 }
+
+.menu-sticky {
+    position: sticky;
+    vertical-align: top;
+    max-height: 90vh;
+    overflow-y: auto;
+    top: 0;
+    bottom: 0;
+  }
