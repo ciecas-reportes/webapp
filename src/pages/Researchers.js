@@ -7,8 +7,8 @@ import ToolbarResearcher from '../components/researchers/ToolbarResearcher';
 import { ModalContextProvider } from '../contexts/modal/ModalContext';
 import { ResearcherContextProvider } from '../contexts/researchers/researcherContext';
 const Researchers = () => {
+
     return ( 
-        
     <Layout>
         <ResearcherContextProvider>
         <ModalContextProvider>
@@ -22,6 +22,7 @@ const Researchers = () => {
                 <ToolbarResearcher/>
                 <TableResearchers/>
             </div>
+            
             <Modal>
                 <FormResearcher/>
             </Modal>

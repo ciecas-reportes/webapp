@@ -18,18 +18,7 @@ const Menu = () => {
                     </span>
                 </Link>
             </div>
-
-            <div className="panel-block">
-                <Link to="/organizations" className="button is-fullwidth">
-                    <span className="icon">
-                    <i className="fas fa-building"></i>
-                    </span>
-                    <span>
-                        Organizaciones
-                    </span>
-                </Link>
-            </div>
-
+            
             <div className="panel-block">
                 <Link to="/researchers" className="button is-fullwidth">
                     <span className="icon">
@@ -47,3 +36,15 @@ const Menu = () => {
 }
  
 export default Menu;
+/*
+            <div className="panel-block">
+                <Link to="/organizations" className="button is-fullwidth">
+                    <span className="icon">
+                    <i className="fas fa-building"></i>
+                    </span>
+                    <span>
+                        Organizaciones
+                    </span>
+                </Link>
+            </div>
+            */

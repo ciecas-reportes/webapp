@@ -23,7 +23,7 @@ const TableRowResearchers = ({researcher}) => {
     return (  
         <tr>
             <td>
-                <Link to={`/researcher/${researcher.id}`}>{researcher.name} {researcher.surname}</Link>
+                <Link to={`/researchers/detail/${researcher.id}`}>{researcher.name} {researcher.surname}</Link>
             </td>
             <td>
                 {researcher.email}

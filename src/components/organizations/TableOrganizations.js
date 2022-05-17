@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import TableRowOrganizations from './TableRowOrganizations';
 const TableOrganizations = () => {
 
-    const [organizationsList, setOrganizationsList] = useState(
+    const [organizationsList] = useState(
         [
             {
             "id": 1,

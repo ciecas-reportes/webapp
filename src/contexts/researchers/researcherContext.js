@@ -1,4 +1,4 @@
-import React, { createContext, useReducer } from 'react';
+import React, { createContext, useReducer, useState } from 'react';
 import { GET_LIST, CREATE, GET_SINGLE, UPDATE, DELETE } from '../../const/actionTypes';
 import ResearcherReducer from '../../reducers/researcherReducer';
 
@@ -14,7 +14,8 @@ export const ResearcherContextProvider = props => {
     };
     // Evitamos hacer componentes enormes con logica complicada con ayuda de los reducers
     const [state, dispatch] = useReducer(ResearcherReducer, initialState);
-
+    // Estado que usaremos para habilitar la barra de "Cargando" mientras se hace una petición
+    const [loading, setLoading] = useState(false);
     const Toast = Swal.mixin({
         toast: true, position: 'top-end', showConfirmButton: false, timer: 5500, padding: '.6em', timerProgressBar: true,
         showClass: {
@@ -30,13 +31,16 @@ export const ResearcherContextProvider = props => {
     // Obtener TODA la lista
     const getResearchersList = async () => {
         try {
+            setLoading(true);
             const response = await Axios.get("/researcher/");
             dispatch({
                 type: GET_LIST,
                 payload: response.data
             });
-        } catch (error) {
-            Toast.fire({ icon: "error", text: error, titleText :"El listado de Investigadores no está disponible." });
+            setLoading(false);
+        } catch (err) {
+            let message = typeof err.response !== "undefined" ? err.response.data.message : err.message;
+            Toast.fire({ icon: "error", text: message, titleText :"El listado de Investigadores no está disponible." });
         }
     }
     // Obtener 1 investigador
@@ -48,19 +52,23 @@ export const ResearcherContextProvider = props => {
                 researcherFound = response.data;
             }
             dispatch({ type: GET_SINGLE, payload: researcherFound !== null ? researcherFound : "" });
-        } catch (error) {
-            Toast.fire({ icon: "error", text: error, titleText :"No ha sido posible obtenido el investigador." });
+        } catch (err) {
+            let message = typeof err.response !== "undefined" ? err.response.data.message : err.message;
+            Toast.fire({ icon: "error", text: message, titleText :"No ha sido posible obtenido el investigador." });
         }
     }
     // Crear 1 investifador
     const createResearcher = async (researcher) => {
         try {
+            setLoading(true);
             const response = await Axios.post("/researcher/", researcher);
             dispatch({ type: CREATE, payload: response.data });
+            setLoading(false);
             Toast.fire({ icon: "success", titleText :`Creación exitosa: ${response.data.name}.` });
-        } catch (error) {
+        } catch (err) {
+            let message = typeof err.response !== "undefined" ? err.response.data.message : err.message;
             Toast.fire({
-                icon: "error", text: error,
+                icon: "error", text: message,
                 titleText :`Error en la creación: ${researcher.name}.` });
         }
     }
@@ -70,8 +78,9 @@ export const ResearcherContextProvider = props => {
             const response = await Axios.put(`/researcher/${researcher.id}`, researcher);
             dispatch({ type: UPDATE, payload: response.data });
             Toast.fire({ icon: "success", titleText :`Actualización exitosa: ${response.data.name} ${response.data.surname}.` });
-        } catch (error) {
-            Toast.fire({ icon: "error", text: error, titleText :`Error al actualizar a ${researcher.name}.`, });
+        } catch (err) {
+            let message = typeof err.response !== "undefined" ? err.response.data.message : err.message;
+            Toast.fire({ icon: "error", text: message, titleText :`Error al actualizar a ${researcher.name}.`, });
         }
     }
     // Borrar por ID
@@ -88,14 +97,18 @@ export const ResearcherContextProvider = props => {
                 
               }).then( async (result) => {
                 if (result.isConfirmed) {
+                    setLoading(true);
                     await Axios.delete(`/researcher/${researcher.id}`);
                     dispatch({ type: DELETE, payload: researcher.id });
+                    setLoading(false);
                     Toast.fire({ icon: "info", titleText :`${researcher.name} ha sido eliminad@.` });
+
                 }
               });
             
-        } catch (error) { 
-            Toast.fire({ icon: "error", text: error, titleText :`Error al eliminar.` });
+        } catch (err) { 
+            let message = typeof err.response !== "undefined" ? err.response.data.message : err.message;
+            Toast.fire({ icon: "error", text: message, titleText :`Error al eliminar.` });
         }
     }
 
@@ -107,7 +120,8 @@ export const ResearcherContextProvider = props => {
             getResearcher,
             createResearcher,
             updateResearcher,
-            deleteResearcher
+            deleteResearcher,
+            loading, setLoading
             }}>
             {props.children}
         </ResearcherContext.Provider>
