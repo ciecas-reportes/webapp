@@ -16,15 +16,15 @@ import Researchers from "./pages/Researchers";
 import 'animate.css';
 import ResearcherDetail from "./pages/ResearcherDetail";
 import NotFound from "./components/commons/404";
-import Axios from "axios";
+//import Axios from "axios";
 
-
+/*
 Axios.interceptors.request.use(function(config) {
   config.url =  `${process.env.REACT_APP_API_BASE_URL}${config.url}`;
   return config;
 
 });
-/*
+
 REACT_APP_API_BASE_URL=http://localhost:9000/api .env.development.local
 */
 
